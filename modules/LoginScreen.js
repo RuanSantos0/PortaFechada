@@ -6,7 +6,8 @@ import {
   Image
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Button, TextInput } from 'react-native-paper';  
+import { Button, TextInput } from 'react-native-paper'; 
+import Toast from 'react-native-simple-toast';
 
 const LoginScreen = (props) => {
 
@@ -28,6 +29,7 @@ const LoginScreen = (props) => {
       if(res.ok)
         props.navigation.navigate("home")
       else{
+        Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
         console.log('Usuário não existe')
       }
     })
@@ -66,7 +68,7 @@ const LoginScreen = (props) => {
           mode="contained"
           style={{marginLeft: 18, marginTop: 18, marginRight: 18, backgroundColor:'blue'}} 
           //onPress={() => }
-          onPress={() => props.navigation.navigate("home")}
+          onPress={() => login()}
           >
             Entrar
           </Button>
