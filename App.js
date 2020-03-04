@@ -9,10 +9,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  View,
-  Text,
-  StatusBar,
-  KeyboardAvoidingView
 } from 'react-native';
 import 'react-native-gesture-handler'
 
@@ -22,6 +18,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import LoginScreen from './modules/LoginScreen'
 import HomeScreen from './modules/HomeScreen'
+import DadosScreen from './modules/DadosScreen'
 
 const Stack = createStackNavigator();
 
@@ -29,9 +26,9 @@ const App = () => {
   return (
         <NavigationContainer >
           <Stack.Navigator screenOptions={{ headerShown: false}}>     
-            <Stack.Screen name="login" component={LoginScreen} options={{
-        }}/>
+          <Stack.Screen name="login" component={LoginScreen}/>
             <Stack.Screen name="home" component={HomeScreen}/>
+            <Stack.Screen name="dados" component={DadosScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
   );
