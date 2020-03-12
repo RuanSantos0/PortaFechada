@@ -8,6 +8,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import { Button, TextInput } from 'react-native-paper'; 
 import Toast from 'react-native-simple-toast';
+import axios from 'axios';
 
 const LoginScreen = (props) => {
 
@@ -15,27 +16,45 @@ const LoginScreen = (props) => {
   const [password, setPassword] = useState('');
 
   login = () => {
-    fetch("http://10.0.2.2:3000/users/login", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        "user": user,
-        "password": password
-      })
+    axios.post('https://api-node-porta.herokuapp.com/users/login', {
+      user: user,
+      password: password
     })
-    .then(res => {
-      if(res.ok)
-        props.navigation.navigate("home")
-      else{
-        Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
-        console.log('Usuário não existe')
-      }
+    .then(function (response) {
+      console.log(response);
+      // if(response.status == 200){
+      //   props.navigation.navigate("home")
+      //   console.log('Login realizado com sucesso')
+      // }
+      // else{
+      //   Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
+      //   console.log('Usuário não existe')
+      // }
     })
-    .then(data => {
-      console.log(data)
-    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    // fetch("http://725b9faa.ngrok.io/users/login", {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body:JSON.stringify({
+    //     "user": user,
+    //     "password": password
+    //   })
+    // })
+    // .then(res => {
+    //   if(res.ok)
+    //     props.navigation.navigate("home")
+    //   else{
+    //     Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
+    //     console.log('Usuário não existe')
+    //   }
+    // })
+    // .then(data => {
+    //   console.log(data)
+    // })
   }
 
   return (
