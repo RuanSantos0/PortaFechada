@@ -22,14 +22,14 @@ const LoginScreen = (props) => {
     })
     .then(function (response) {
       console.log(response);
-      // if(response.status == 200){
-      //   props.navigation.navigate("home")
-      //   console.log('Login realizado com sucesso')
-      // }
-      // else{
-      //   Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
-      //   console.log('Usuário não existe')
-      // }
+      if(response.status == 200){
+        props.navigation.navigate("home")
+        console.log('Login realizado com sucesso')
+      }
+      else{
+        Toast.showWithGravity('Usuário ou Senha não existe', Toast.LONG, Toast.BOTTOM)
+        console.log('Usuário não existe')
+      }
     })
     .catch(function (error) {
       console.log(error);

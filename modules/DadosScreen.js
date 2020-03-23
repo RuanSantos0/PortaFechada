@@ -22,7 +22,7 @@ constructor(props) {
       delete myStorage[key];
     },
   };
-  this.client = new Client({ uri: 'ws://test.mosquitto.org:8080/ws', clientId: 'admin123', storage: this.myStorage });
+  this.client = new Client({ uri: 'ws://test.mosquitto.org:8080/fogaoromuloeleo', clientId: 'admin123', storage: this.myStorage });
 }
 
 componentDidMount() {
@@ -46,6 +46,7 @@ this.client.on('messageReceived', (message) => {
 this.client.connect()
   .then(() => {
     console.log('onConnect');
+    console.log('----------',this.props.route.params.topico);
     return this.client.subscribe(this.props.route.params.topico);
   })
   .then(() => {
